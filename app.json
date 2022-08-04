@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.keep-calm-and-develop.cakeshop-app"
     },
     "android": {
       "adaptiveIcon": {
