@@ -18,15 +18,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.bittersweetsymphony.employee_app"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/favicon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.bittersweetsymphony.employee_app"
+      "package": "com.keepcalmanddevelop.cakeshopapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
