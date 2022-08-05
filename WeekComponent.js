@@ -29,7 +29,7 @@ export const WeekComponent = ({ onChange, currentDay }) => {
                     const selected = current === day;
                     return (
                         <Pressable key={day} onPress={() => onChange(date)} style={styles.dayButton}>
-                            <View style={[styles.day, selected ? styles.selectedDay : {}]}>
+                            <View style={[styles.day, { margin: 5 }, selected ? styles.selectedDay : {}]}>
                                 <Text style={[styles.dayText, selected ? styles.selectedDayText : {}]}>
                                     {day}
                                 </Text>
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 5,
     },
     day: {
         borderRadius: 50,

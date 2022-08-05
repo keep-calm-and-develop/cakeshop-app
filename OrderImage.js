@@ -14,7 +14,8 @@ export const OrderImage = ({ order }) => (
 
 const styles = StyleSheet.create({
     imgContainer: {
-        width: '100%'
+        width: '100%',
+        marginBottom: 15,
     },
     img: {
         width: '100%',

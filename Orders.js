@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        gap: 10,
         paddingVertical: 10,
         width: '100%',
         flexWrap: 'wrap',
@@ -95,6 +94,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         borderColor: 'gray',
+        margin: 10,
     },
     specialInstructions: {
         fontSize: 12,

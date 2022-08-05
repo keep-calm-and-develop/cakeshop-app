@@ -19,7 +19,7 @@ export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted }
                     </Pressable>
                 </View>
                 <ScrollView style={{ width: '100%', height: 700 }} contentContainerStyle={styles.modalBody}>
-                    <View style={styles.productAndDeliveryDetails}>
+                    <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
                         <Text style={styles.textStyle}>{order.productType}</Text>
                         <View style={styles.deliveryDetails}>
                             <Text style={styles.textStyle}>{format(order.deliveryDate, 'dd MMM, hh:mm a')}</Text>
@@ -28,9 +28,9 @@ export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted }
                             </View>
                         </View>
                     </View>
-                    <Text style={styles.textStyle}>{order.properties?.length} Properties</Text>
+                    <Text style={[styles.textStyle, { marginBottom: 15 }]}>{order.properties?.length} Properties</Text>
                     <PropertiesTable properties={order.properties} />
-                    <View style={styles.productAndDeliveryDetails}>
+                    <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
                         <Text style={styles.textStyle}>Customer Name: {order.customer?.name}</Text>
                         <Pressable style={styles.completeButton} onPress={onMarkAsCompleted}>
                             <Text style={[styles.textStyle, styles.completeButtonText]}>Mark as Completed</Text>
@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "flex-start",
         alignItems: "center",
-        gap: 10,
     },
     deliveryType: {
         backgroundColor: 'sienna',
         paddingVertical: 5,
         paddingHorizontal: 15,
         borderRadius: 20,
+        marginLeft: 20,
     },
     deliveryTypeText: {
         color: 'white',
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "flex-start",
         flexDirection: 'column',
-        gap: 15,
         width: '100%',
         padding: 20,
     },

@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        marginBottom: 15,
     },
     tHead: {
         display: 'flex',
