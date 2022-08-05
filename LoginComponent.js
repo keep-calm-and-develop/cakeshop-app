@@ -12,11 +12,11 @@ export const LoginComponent = ({ callback }) => {
     const [loading, setLoading] = useState(false);
     const {dispatch} = useGlobalContext();
 
-    const onEmailChange = useCallback((event) => {
-        setEmail(event.target.value);
+    const onEmailChange = useCallback((value) => {
+        setEmail(value);
     }, []);
-    const onPasswordChange = useCallback((event) => {
-        setPassword(event.target.value);
+    const onPasswordChange = useCallback((value) => {
+        setPassword(value);
     }, []);
     const onLogin = useCallback(async () => {
         setError('');
@@ -50,6 +50,7 @@ export const LoginComponent = ({ callback }) => {
             setLoading(false);
         }
     }, [email, password]);
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -57,14 +58,14 @@ export const LoginComponent = ({ callback }) => {
                 keyboardType="email-address"
                 placeholder="Enter Your Email"
                 value={email}
-                onChange={onEmailChange}
+                onChangeText={onEmailChange}
             />
             <TextInput
                 style={styles.textInput}
                 secureTextEntry
                 placeholder="Enter Your Password"
                 value={password}
-                onChange={onPasswordChange}
+                onChangeText={onPasswordChange}
             />
             <Pressable style={styles.button} onPress={onLogin} disabled={loading || !email || !password}>
                 <Text style={styles.buttonLabel}>{loading ? 'Checking...' : 'Login'}</Text>
@@ -81,7 +82,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        gap: 20,
     },
     textInput: {
         paddingVertical: 15,
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderRadius: 10,
         width: 400,
+        marginBottom: 15,
     },
     button: {
         backgroundColor: 'black',
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         display: 'flex',
+        marginBottom: 15,
     },
     buttonLabel: {
         color: 'white',

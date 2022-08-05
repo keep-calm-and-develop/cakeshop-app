@@ -19,13 +19,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.keep-calm-and-develop.cakeshop-app"
+      "bundleIdentifier": "com.bittersweetsymphony.employee-app"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.bittersweetsymphony.employee-app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
