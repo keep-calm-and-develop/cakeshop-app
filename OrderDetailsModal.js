@@ -18,26 +18,28 @@ export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted }
                         <Text style={styles.buttonText}>Close</Text>
                     </Pressable>
                 </View>
-                <ScrollView style={{ width: '100%', height: 700 }} contentContainerStyle={styles.modalBody}>
-                    <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
-                        <Text style={styles.textStyle}>{order.productType}</Text>
-                        <View style={styles.deliveryDetails}>
-                            <Text style={styles.textStyle}>{format(order.deliveryDate, 'dd MMM, hh:mm a')}</Text>
-                            <View style={styles.deliveryType}>
-                                <Text style={styles.deliveryTypeText}>{order.deliveryType}</Text>
+                <View style={{ width: '100%', height: '80%' }}>
+                    <ScrollView contentContainerStyle={styles.modalBody}>
+                        <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
+                            <Text style={styles.textStyle}>{order.productType}</Text>
+                            <View style={styles.deliveryDetails}>
+                                <Text style={styles.textStyle}>{format(order.deliveryDate, 'dd MMM, hh:mm a')}</Text>
+                                <View style={styles.deliveryType}>
+                                    <Text style={styles.deliveryTypeText}>{order.deliveryType}</Text>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                    <Text style={[styles.textStyle, { marginBottom: 15 }]}>{order.properties?.length} Properties</Text>
-                    <PropertiesTable properties={order.properties} />
-                    <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
-                        <Text style={styles.textStyle}>Customer Name: {order.customer?.name}</Text>
-                        <Pressable style={styles.completeButton} onPress={onMarkAsCompleted}>
-                            <Text style={[styles.textStyle, styles.completeButtonText]}>Mark as Completed</Text>
-                        </Pressable>
-                    </View>
-                    <OrderImage order={order} />
-                </ScrollView>
+                        <Text style={[styles.textStyle, { marginBottom: 15 }]}>{order.properties?.length} Properties</Text>
+                        <PropertiesTable properties={order.properties} />
+                        <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
+                            <Text style={styles.textStyle}>Customer Name: {order.customer?.name}</Text>
+                            <Pressable style={styles.completeButton} onPress={onMarkAsCompleted}>
+                                <Text style={[styles.textStyle, styles.completeButtonText]}>Mark as Completed</Text>
+                            </Pressable>
+                        </View>
+                        <OrderImage order={order} />
+                    </ScrollView>
+                </View>
             </View>
         </Modal>
     );

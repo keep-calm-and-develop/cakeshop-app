@@ -33,8 +33,8 @@ export const StatusChangeModal = ({ visible, order, onClose }) => {
                     </Pressable>
                 </View>
                 <View style={styles.modalBody}>
-                    <Text style={[styles.textStyle, { marginBottom: 15 }]}>Does this order has been {NEXT_STATUS_MAPPING[order.status]}?</Text>
-                    <Pressable style={[styles.completeButton, { marginBottom: 15 }]} onPress={onConfirm} disabled={updating}>
+                    <Text style={[styles.textStyle, { marginBottom: 15 }]}>Does this order has been {NEXT_STATUS_MAPPING[order.status].replace('_', ' ')}?</Text>
+                    <Pressable style={[styles.completeButton, { marginLeft: 15, marginBottom: 15 }]} onPress={onConfirm} disabled={updating}>
                         <Text style={styles.completeButtonText}>Yes, Confirm</Text>
                     </Pressable>
                 </View>

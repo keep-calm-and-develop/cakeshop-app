@@ -1,20 +1,23 @@
-import { addDays, format, getDay, nextSaturday, previousSunday } from "date-fns";
+import { addDays, format, getDay, isSaturday, isSunday, nextSaturday, previousSunday, subDays } from "date-fns";
 import { useCallback, useMemo } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
 
 export const WeekComponent = ({ onChange, currentDay }) => {
-    const today = useMemo(() => new Date(), []);
+    const today = useMemo(() => {
+        const d = new Date();
+        return subDays(d, 1);
+    }, []);
     
     const daysArr = useMemo(() => {
         const arr = [];
-        const sunday = previousSunday(today);
+        const sunday = isSunday(today) ? today : previousSunday(today);
         arr.push(sunday);
         for (let i = 1; i <= 5; i += 1) {
             const nextDay = addDays(sunday, i);
             arr.push(nextDay);
         }
-        const saturday = nextSaturday(today);
+        const saturday = isSaturday(today) ? today : nextSaturday(today);
         arr.push(saturday);
         return arr;
     }, [currentDay, today]);
@@ -60,7 +63,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     day: {
-        borderRadius: 50,
         width: 65,
         height: 65,
         flexDirection: 'row',
@@ -68,7 +70,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     selectedDay: {
-        backgroundColor: 'sienna'
+        borderRadius: 50,
+        backgroundColor: 'sienna',
     },
     dayText: {
         fontSize: 22,

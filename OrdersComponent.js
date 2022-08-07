@@ -1,7 +1,7 @@
 import { endOfDay, startOfDay } from "date-fns";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getParsedDocsFromQuerySnapShot } from "./App";
 import { firestore } from "./firebase";
 import { ACTIONS, useGlobalContext } from "./globalContext";
@@ -64,9 +64,11 @@ export const OrdersComponent = ({ callback: onLogout }) => {
                 <Text style={styles.title}>{state?.currentEmployee?.name??'Employee'}</Text>
                 <Pressable onPress={onLogout}><Text style={styles.logout}>logout</Text></Pressable>
             </View>
-            <View style={styles.pageContainer}>
-                <WeekComponent onChange={onDayChange} currentDay={day} />
-                <Orders orders={state.orders} fetchOrders={fetchOrders} />
+            <View style={{ width: '100%', height: '80%' }}>
+                <ScrollView contentContainerStyle={styles.pageContainer}>
+                    <WeekComponent onChange={onDayChange} currentDay={day} />
+                    <Orders orders={state.orders} fetchOrders={fetchOrders} />
+                </ScrollView>
             </View>
         </View>
     );
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     pageContainer: {
-        flex: 1,
+        width: '100%',
         paddingVertical: 20,
         paddingHorizontal: 30,
     },
