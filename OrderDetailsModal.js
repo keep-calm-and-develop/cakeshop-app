@@ -8,8 +8,8 @@ export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted }
         <Modal
             animationType="fade"
             visible={visible}
-            presentationStyle="fullscreen"
             onRequestClose={onClose}
+            supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalHeader}>

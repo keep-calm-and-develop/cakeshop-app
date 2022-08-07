@@ -20,7 +20,10 @@ export const Orders = ({ orders, fetchOrders }) => {
         }
     };
     
-    const onMarkAsCompleted = () => setStatusConfirmVisible(true);
+    const onMarkAsCompleted = () => {
+        setStatusConfirmVisible(true);
+        onClose();
+    };
     
     return (
         <React.Fragment>

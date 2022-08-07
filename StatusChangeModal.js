@@ -22,8 +22,8 @@ export const StatusChangeModal = ({ visible, order, onClose }) => {
         <Modal
             animationType="fade"
             visible={visible}
-            presentationStyle="formSheet"
             onRequestClose={onClose}
+            supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalHeader}>
