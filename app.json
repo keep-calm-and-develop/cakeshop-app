@@ -28,7 +28,7 @@
       "package": "com.keepcalmanddevelop.cakeshopapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     }
   }
 }

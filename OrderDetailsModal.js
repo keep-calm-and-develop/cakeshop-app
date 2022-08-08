@@ -29,6 +29,7 @@ export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted }
                                 </View>
                             </View>
                         </View>
+                        <Text style={[styles.textStyle, { marginBottom: 15 }]}>Special Instructions: {order?.specialInstructions??'---'}</Text>
                         <Text style={[styles.textStyle, { marginBottom: 15 }]}>{order.properties?.length} Properties</Text>
                         <PropertiesTable properties={order.properties} />
                         <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
