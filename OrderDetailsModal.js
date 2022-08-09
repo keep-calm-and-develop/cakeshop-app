@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable, Modal, ScrollView } from "react-nati
 import { OrderImage } from "./OrderImage";
 import { PropertiesTable } from "./PropertiesTable";
 
-export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted }) => {
+export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted, isInEmployeesHand }) => {
     return (
         <Modal
             animationType="fade"
@@ -32,12 +32,12 @@ export const OrderDetailsModal = ({ visible, onClose, order, onMarkAsCompleted }
                         <Text style={[styles.textStyle, { marginBottom: 15 }]}>Special Instructions: {order?.specialInstructions??'---'}</Text>
                         <Text style={[styles.textStyle, { marginBottom: 15 }]}>{order.properties?.length} Properties</Text>
                         <PropertiesTable properties={order.properties} />
-                        <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
+                        {isInEmployeesHand && <View style={[styles.productAndDeliveryDetails, { marginBottom: 15 }]}>
                             <Text style={styles.textStyle}>Customer Name: {order.customer?.name}</Text>
                             <Pressable style={styles.completeButton} onPress={onMarkAsCompleted}>
                                 <Text style={[styles.textStyle, styles.completeButtonText]}>Mark as Completed</Text>
                             </Pressable>
-                        </View>
+                        </View>}
                         <OrderImage order={order} />
                     </ScrollView>
                 </View>

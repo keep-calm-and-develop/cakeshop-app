@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { PROCESSES } from "./constants";
+import { NEXT_STATUS_MAPPING, PROCESSES } from "./constants";
 import { OrderDetailsModal } from "./OrderDetailsModal";
 import { StatusBadge } from "./StatusBadge";
 import { StatusChangeModal } from "./StatusChangeModal";
@@ -24,6 +24,10 @@ export const Orders = ({ orders, fetchOrders }) => {
         setStatusConfirmVisible(true);
         onClose();
     };
+
+    const isInEmployeesHand = useMemo(() => {
+        return currentState.order && NEXT_STATUS_MAPPING[currentState.order?.status];
+    }, [currentState.order]);
     
     return (
         <React.Fragment>
@@ -54,8 +58,8 @@ export const Orders = ({ orders, fetchOrders }) => {
                     </View>
                 ))
             }
-            {currentState.order && <OrderDetailsModal visible={modalVisible} onClose={onClose} order={currentState.order} onMarkAsCompleted={onMarkAsCompleted} />}
-            {currentState.order && <StatusChangeModal order={currentState.order} process={currentState.currentProcess} visible={statusConfirmVisible} onClose={onStatusConfirmClose} />}
+            {currentState.order && <OrderDetailsModal visible={modalVisible} onClose={onClose} order={currentState.order} onMarkAsCompleted={onMarkAsCompleted} isInEmployeesHand={isInEmployeesHand} />}
+            {isInEmployeesHand && <StatusChangeModal order={currentState.order} process={currentState.currentProcess} visible={statusConfirmVisible} onClose={onStatusConfirmClose} />}
         </React.Fragment>
     );
 };
