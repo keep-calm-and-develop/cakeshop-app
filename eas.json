@@ -13,6 +13,16 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+        "ios": {
+            "appName": "BitterSweetSymphonyEmployee",
+            "ascAppId": "1638940844",
+            "sku": "EX1660055272051",
+            "appleId": "bittersweetsymphony20@gmail.com",
+            "appleTeamId": "CBHZ7HSA6S",
+            "ascApiKeyIssuerId": "c5f87fb2-b571-4d61-b504-15f6a0c3d24d",
+            "ascApiKeyId": "BSD9MY7NC5"
+        }
+    }
   }
 }
