@@ -5,8 +5,7 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 
 export const WeekComponent = ({ onChange, currentDay }) => {
     const today = useMemo(() => {
-        const d = new Date();
-        return subDays(d, 1);
+        return new Date();
     }, []);
     
     const daysArr = useMemo(() => {
