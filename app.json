@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "cakeshop-app",
-    "slug": "cakeshop-app",
+    "name": "BitterSweetSymphonyEmployee",
+    "slug": "BitterSweetSymphonyEmployee",
     "version": "1.0.0",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/IMG_0540.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -21,10 +21,6 @@
       "bundleIdentifier": "com.keepcalmanddevelop.cakeshopapp"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
       "package": "com.keepcalmanddevelop.cakeshopapp"
     },
     "web": {
