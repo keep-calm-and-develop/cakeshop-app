@@ -56,6 +56,13 @@ export const PROCESSES = [
     },
 ];
 
+export const PROCESSES_STATUS_MAP = {
+    layering: 'PENDING',
+    finishing: 'LAYERED',
+    fondantFinishing: 'FINISHED',
+    decorating: 'FONDANT_FINISHED',
+};
+
 export const NEXT_STATUS_MAPPING = {
     'PENDING': 'LAYERED',
     'LAYERED': 'FINISHED',

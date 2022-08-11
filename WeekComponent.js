@@ -1,4 +1,4 @@
-import { addDays, format, getDay, isSaturday, isSunday, nextSaturday, previousSunday, subDays } from "date-fns";
+import { addDays, format, isTuesday, isWednesday, nextTuesday, previousWednesday } from "date-fns";
 import { useCallback, useMemo } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
@@ -10,13 +10,13 @@ export const WeekComponent = ({ onChange, currentDay }) => {
     
     const daysArr = useMemo(() => {
         const arr = [];
-        const sunday = isSunday(today) ? today : previousSunday(today);
+        const sunday = isWednesday(today) ? today : previousWednesday(today);
         arr.push(sunday);
         for (let i = 1; i <= 5; i += 1) {
             const nextDay = addDays(sunday, i);
             arr.push(nextDay);
         }
-        const saturday = isSaturday(today) ? today : nextSaturday(today);
+        const saturday = isTuesday(today) ? today : nextTuesday(today);
         arr.push(saturday);
         return arr;
     }, [currentDay, today]);

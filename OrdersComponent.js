@@ -1,6 +1,6 @@
 import { endOfDay, startOfDay } from "date-fns";
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
-import { useCallback, useEffect, useState } from "react";
+import { collection, getDocs, orderBy, query, where, onSnapshot } from "firebase/firestore";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getParsedDocsFromQuerySnapShot } from "./App";
 import { firestore } from "./firebase";
@@ -12,6 +12,7 @@ export const OrdersComponent = ({ callback: onLogout }) => {
     const {state, dispatch} = useGlobalContext();
     const [loading, setLoading] = useState(false);
     const [day, setDay] = useState(new Date());
+    const unsub = useRef(() => {});
 
     const onDayChange = useCallback((date) => {
         setDay(date);
@@ -25,37 +26,40 @@ export const OrdersComponent = ({ callback: onLogout }) => {
             collection(firestore, 'orders'),
             where("deliveryDate", ">=", dayStart),
             where("deliveryDate", "<", dayEnd),
-            where("isAssigned", "==", true),
             orderBy('deliveryDate', 'asc')
         );
-        const querySnapshot = await getDocs(q);
-        const orders = getParsedDocsFromQuerySnapShot(querySnapshot);
-
-        const ordersByProcessCategories = {
-            layering: [],
-            decorating: [],
-            finishing: [],
-            fondantFinishing: [],
-        };
-        const employeeId = state.currentEmployee?.id;
-        const filteredOrders = orders.filter(order => {
-            return !['CANCELLED', 'READY', 'COMPLETED'].includes(order.status)
-        });
-        filteredOrders.forEach(order => {
-            ['layering', 'finishing', 'decorating', 'fondantFinishing'].forEach(process => {
-                if (order[process]?.value === employeeId) {
-                    ordersByProcessCategories[process].push(order);
-                }
+        unsub.current();
+        unsub.current = onSnapshot(q, (querySnapshot) => {
+            const orders = getParsedDocsFromQuerySnapShot(querySnapshot);
+            const ordersByProcessCategories = {
+                layering: [],
+                decorating: [],
+                finishing: [],
+                fondantFinishing: [],
+            };
+            const employeeId = state.currentEmployee?.id;
+            const filteredOrders = orders.filter(order => {
+                return !['CANCELLED', 'READY', 'COMPLETED'].includes(order.status)
             });
+            filteredOrders.forEach(order => {
+                ['layering', 'finishing', 'decorating', 'fondantFinishing'].forEach(process => {
+                    if (order[process]?.value === employeeId) {
+                        ordersByProcessCategories[process].push(order);
+                    }
+                });
+            });
+            dispatch({ type: ACTIONS.SET_ORDERS, payload: ordersByProcessCategories });
+            setLoading(false);
         });
-        dispatch({ type: ACTIONS.SET_ORDERS, payload: ordersByProcessCategories });
-        setLoading(false);
     };
 
     useEffect(() => {
         if (state.currentEmployee) {
             fetchOrders();
         }
+        return () => {
+            unsub.current();
+        };
     }, [state.currentEmployee, day]);
 
     return (

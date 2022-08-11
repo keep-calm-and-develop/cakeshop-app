@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { NEXT_STATUS_MAPPING, PROCESSES } from "./constants";
+import { NEXT_STATUS_MAPPING, PROCESSES, PROCESSES_STATUS_MAP } from "./constants";
 import { OrderDetailsModal } from "./OrderDetailsModal";
 import { StatusBadge } from "./StatusBadge";
 import { StatusChangeModal } from "./StatusChangeModal";
@@ -39,20 +39,26 @@ export const Orders = ({ orders, fetchOrders }) => {
                         </View>
                         <View style={styles.ordersContainer}>
                             {
-                                orders[process.value].map(order => (
-                                    <Pressable
-                                        key={order.id}
-                                        style={styles.card}
-                                        onPress={() => {
-                                            setOrder({ order, currentProcess: process.value });
-                                            setModalVisible(true);
-                                        }}
-                                    >
-                                        <Text style={[styles.processTitleText, { fontSize: 14 }]}>{order.productType}</Text>
-                                        {order.specialInstructions ? <Text style={styles.specialInstructions}>*special instructions</Text> : null}
-                                        <StatusBadge status={order.status} />
-                                    </Pressable>
-                                ))
+                                orders[process.value].map(order => 
+                                    order?.status === PROCESSES_STATUS_MAP[process.value]
+                                    ?
+                                    (
+                                        <Pressable
+                                            key={order.id}
+                                            style={styles.card}
+                                            onPress={() => {
+                                                setOrder({ order, currentProcess: process.value });
+                                                setModalVisible(true);
+                                            }}
+                                        >
+                                            <Text style={[styles.processTitleText, { fontSize: 14 }]}>{order.productType}</Text>
+                                            {order.specialInstructions ? <Text style={styles.specialInstructions}>*special instructions</Text> : null}
+                                            <StatusBadge status={order.status} />
+                                        </Pressable>
+                                    )
+                                    :
+                                    null
+                                )
                             }
                         </View>
                     </View>
