@@ -52,7 +52,19 @@ export const Orders = ({ orders, fetchOrders }) => {
                                             }}
                                         >
                                             <Text style={[styles.processTitleText, { fontSize: 14 }]}>{order.productType}</Text>
-                                            {order.specialInstructions ? <Text style={styles.specialInstructions}>*special instructions</Text> : null}
+                                            {order.properties.length > 0 && (
+                                                <View style={styles.propertiesContainer}>
+                                                    {
+                                                        order.properties.slice(0, 2).map(property => (
+                                                            <View style={styles.propertyCell} key={`${order.id}${property.cake}${property.filling}${property.frosting}`}>
+                                                                <Text style={styles.text}>{property.cake || ''}</Text>
+                                                                <Text style={styles.text}>{property.filling || ''}</Text>
+                                                                <Text style={styles.text}>{property.frosting || ''}</Text>
+                                                            </View>
+                                                        ))
+                                                    }
+                                                </View>
+                                            )}
                                             <StatusBadge status={order.status} />
                                         </Pressable>
                                     )
@@ -112,5 +124,21 @@ const styles = StyleSheet.create({
     specialInstructions: {
         fontSize: 12,
         fontStyle: 'italic',
+    },
+    propertiesContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+    },
+    propertyCell: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap'
+    },
+    text: {
+        fontSize: 10,
     },
 });
