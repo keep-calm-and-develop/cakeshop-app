@@ -55,7 +55,7 @@ export const Orders = ({ orders, fetchOrders }) => {
                                             {order.properties.length > 0 && (
                                                 <View style={styles.propertiesContainer}>
                                                     {
-                                                        order.properties.slice(0, 2).map(property => (
+                                                        order.properties.slice(0, 5).map(property => (
                                                             <View style={styles.propertyCell} key={`${order.id}${property.cake}${property.filling}${property.frosting}`}>
                                                                 <Text style={styles.text}>{property.cake || ''}</Text>
                                                                 <Text style={styles.text}>{property.filling || ''}</Text>
