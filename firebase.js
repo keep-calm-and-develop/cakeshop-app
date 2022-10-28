@@ -2,19 +2,21 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { REACT_APP_FIREBASE_API_KEY, REACT_APP_FIREBASE_APP_NAME, REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+    REACT_APP_FIREBASE_MESSAGE_APP_ID, REACT_APP_FIREBASE_MEASUREMENT_ID } from '@env';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCz4xyFgFICabOfmoZZXGoZr8Be070Obv4",
-  authDomain: "cakeshop-ea8f5.firebaseapp.com",
-  projectId: "cakeshop-ea8f5",
-  storageBucket: "cakeshop-ea8f5.appspot.com",
-  messagingSenderId: "337421629641",
-  appId: "1:337421629641:web:996935a60cc5141b5e3518",
-  measurementId: "G-W6CT4D551E"
+    apiKey: REACT_APP_FIREBASE_API_KEY,
+    authDomain: `${REACT_APP_FIREBASE_APP_NAME}.firebaseapp.com`,
+    projectId: REACT_APP_FIREBASE_APP_NAME,
+    storageBucket: `${REACT_APP_FIREBASE_APP_NAME}.appspot.com`,
+    messagingSenderId: REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+    appId: REACT_APP_FIREBASE_MESSAGE_APP_ID,
+    measurementId: REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
